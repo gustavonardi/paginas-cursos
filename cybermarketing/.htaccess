@@ -1,4 +1,4 @@
-# Cabeceras de seguridad (aplican si el servidor es Apache/OpenLiteSpeed)
+# OJO: el servidor (LiteSpeed en xCloud) ignora estas cabeceras. Las que valen se ponen en Cloudflare (ver README).
 <IfModule mod_headers.c>
   Header always set X-Content-Type-Options "nosniff"
   Header always set X-Frame-Options "SAMEORIGIN"

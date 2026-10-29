@@ -49,6 +49,9 @@ Antes de elegir el nombre:
 - IP, usuario y clave como secrets, no en el código.
 - Acciones fijadas por SHA, permisos mínimos y checkout sin credenciales guardadas.
 - Repo privado.
+- `Options -Indexes`: no se listan las carpetas (probado: da 404).
+- **Cabeceras de seguridad:** el servidor (LiteSpeed en xCloud) **ignora** las cabeceras del `.htaccess`. Se configuran en Cloudflare: HSTS en *SSL/TLS > Edge Certificates* y el resto con una regla en *Rules > Transform Rules > Modify Response Header*.
+- La política de referrer está como `<meta name="referrer">` en cada página, porque eso sí funciona sin el servidor.
 
 ## Uso diario
 
@@ -68,7 +71,7 @@ Antes de elegir el nombre:
 - Si el producto no tiene descuento, se ocultan el precio tachado y el "% OFF".
 - La cuenta regresiva termina el 4/11/2026 23:59 (hora Argentina): variable `END` en `cyber.js`.
 - Si cambiás `cyber.js`, subí el número de `cyber.js?v=1` en `index.html` (Cloudflare lo cachea).
-- Tiene GTM `GTM-NDP2Z9X`.
+- Tiene GTM `GTM-NDP2Z9X` y el píxel de Meta `1192997017474111` (PageView). Las compras las mide PixelYourSite en el checkout de WordPress.
 
 ## Si algo falla
 
