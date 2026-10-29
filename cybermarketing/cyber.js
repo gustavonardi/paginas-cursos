@@ -1,7 +1,7 @@
-// Cyber Marketing: cuenta regresiva, barra fija, carrusel de reseñas y precios en vivo.
+// Cyber Marketing: cuenta regresiva, barra fija y carrusel de reseñas.
+// Los precios son fijos y están escritos en index.html.
 (function () {
   var END = new Date('2026-11-04T23:59:59-03:00').getTime();
-  var STORE = 'https://cursos.desnudandoelmarketing.com';
 
   // Cuenta regresiva (todos los elementos con data-cd)
   var pad = function (n) { return String(n).padStart(2, '0'); };
@@ -51,28 +51,4 @@
     var i = Math.round(car.scrollLeft / step());
     dots.forEach(function (d, j) { d.classList.toggle('on', i === j); });
   }, { passive: true });
-
-  // Precios en vivo desde WooCommerce. Si falla, quedan los precios escritos en el HTML.
-  var fmt = function (cents) { return '$ ' + Math.round(cents / 100).toLocaleString('es-AR'); };
-  var cards = document.querySelectorAll('[data-id]');
-  var ids = Array.prototype.map.call(cards, function (c) { return c.getAttribute('data-id'); });
-  fetch(STORE + '/wp-json/wc/store/v1/products?include=' + ids.join(',') + '&per_page=50')
-    .then(function (r) { return r.json(); })
-    .then(function (list) {
-      cards.forEach(function (card) {
-        var p = list.find(function (x) { return String(x.id) === card.getAttribute('data-id'); });
-        if (!p) return;
-        var regular = +p.prices.regular_price, price = +p.prices.price;
-        if (!price) return;
-        var off = regular > price ? Math.round((1 - price / regular) * 100) : 0;
-        card.querySelector('.reg').textContent = fmt(regular);
-        card.querySelector('.reg').hidden = !off;
-        card.querySelector('.cuota').textContent = fmt(price / 3);
-        card.querySelector('.pago-val').textContent = fmt(price);
-        var tag = card.querySelector('.tag-off');
-        tag.textContent = off + '% OFF';
-        tag.hidden = !off;
-      });
-    })
-    .catch(function () {});
 })();

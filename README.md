@@ -67,10 +67,11 @@ Antes de elegir el nombre:
 - Para medir clics usá activadores "Clic - Solo enlaces" (los botones tienen `<span>` adentro).
 
 ### cybermarketing
-- `cyber.js` lee los precios **en vivo** de WooCommerce por ID de producto (`data-id` de cada tarjeta). Los precios del HTML son el respaldo.
-- Si el producto no tiene descuento, se ocultan el precio tachado y el "% OFF".
+- Página activa solo durante el Cyber (2 al 4 de noviembre). El resto del año queda oculta.
+- **Precios fijos** escritos en `index.html` (precio de lista, precio Cyber al 20% y 3 cuotas). No consulta a WooCommerce, así no le suma carga a WordPress durante el pico de ventas. Si cambia un precio, hay que cambiarlo a mano en el HTML.
+- Los botones llevan directo al checkout (`/checkout/?add-to-cart=ID`). El 20% se activa en WooCommerce el domingo previo a las 23:59.
 - La cuenta regresiva termina el 4/11/2026 23:59 (hora Argentina): variable `END` en `cyber.js`.
-- Si cambiás `cyber.js`, subí el número de `cyber.js?v=1` en `index.html` (Cloudflare lo cachea).
+- Si cambiás `cyber.js`, subí el número de `cyber.js?v=2` en `index.html` (Cloudflare lo cachea).
 - Tiene GTM `GTM-NDP2Z9X` y el píxel de Meta `1192997017474111` (PageView). Las compras las mide PixelYourSite en el checkout de WordPress.
 
 ## Si algo falla
