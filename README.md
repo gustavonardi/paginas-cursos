@@ -1,1 +1,77 @@
-# paginas-cursos
+# Páginas de cursos.desnudandoelmarketing.com
+
+Todas las páginas que se publican **sin pasar por WordPress**, en un solo repo. Cada push a `main` las sube al servidor en unos 30 segundos.
+
+## Páginas
+
+| Carpeta | Página publicada |
+|---|---|
+| `menu/` | Link en bio: https://cursos.desnudandoelmarketing.com/menu/ |
+| `cybermarketing/` | Cyber Marketing: https://cursos.desnudandoelmarketing.com/cybermarketing/ |
+
+**No van acá** las páginas que necesitan WordPress:
+- Hub Laboral (`gustavonardi/hub-laboral`): usa shortcode por la restricción de usuarios.
+- Lista de espera curso IA (`gustavonardi/lista-de-espera-curso-ia`): se pega en un módulo de Divi y usa el formulario de Brevo.
+
+## Cómo funciona
+
+```
+Commit en GitHub (main)
+   -> GitHub Actions copia cada carpeta del repo
+   -> Las sube por SSH a /var/www/cursos.desnudandoelmarketing.com/<carpeta>/
+```
+
+- Cada carpeta es una página. El nombre de la carpeta es la URL.
+- La página principal de cada carpeta se llama `index.html`.
+- Los archivos que se borran del repo **no** se borran del servidor.
+
+## Agregar una página nueva
+
+1. Creá una carpeta con el nombre que querés en la URL (por ejemplo `black-friday/`) y poné adentro el `index.html` y sus imágenes.
+2. Commit en `main`. Listo, no hay que tocar el workflow ni las claves.
+
+Antes de elegir el nombre:
+- **Que no exista una página de WordPress con esa URL.** La carpeta real gana y la página de WordPress deja de verse.
+- El workflow frena si la carpeta se llama `wp-...`, `cgi-bin` o `.well-known`, para no pisar WordPress.
+
+## Qué se configuró (una sola vez)
+
+1. **xCloud, Site SSH/sFTP Access:** clave pública "github cyber-marketing" tildada (usuario `u15_cursosv2_4n`, solo autenticación por clave).
+2. **GitHub, Settings > Secrets and variables > Actions:**
+   - `SSH_KEY`: clave privada (solo existe ahí).
+   - `SSH_HOST`: IP del servidor.
+   - `SSH_USER`: usuario SSH del sitio.
+   - `SSH_FINGERPRINT`: huella del servidor, tipo **ECDSA** (empieza con `SHA256:`).
+
+## Seguridad
+
+- Autenticación solo por clave SSH y verificación de la huella del servidor antes de conectar.
+- IP, usuario y clave como secrets, no en el código.
+- Acciones fijadas por SHA, permisos mínimos y checkout sin credenciales guardadas.
+- Repo privado.
+
+## Uso diario
+
+- **Editar:** abrí el `index.html` de la carpeta en GitHub, tocá el lápiz y hacé *Commit changes*.
+- **Desde la compu:** antes de editar, `git pull`. Al terminar, `git push`. (Se trabaja desde notebook y escritorio: GitHub es la versión oficial.)
+- **Publicar a mano:** Actions > "Deploy paginas" > Run workflow.
+- **Ver si funcionó:** pestaña Actions. Verde = publicado.
+
+## Notas por página
+
+### menu (Link en bio)
+- Tiene GTM `GTM-NDP2Z9X` y el píxel de Meta en el HTML.
+- Para medir clics usá activadores "Clic - Solo enlaces" (los botones tienen `<span>` adentro).
+
+### cybermarketing
+- `cyber.js` lee los precios **en vivo** de WooCommerce por ID de producto (`data-id` de cada tarjeta). Los precios del HTML son el respaldo.
+- Si el producto no tiene descuento, se ocultan el precio tachado y el "% OFF".
+- La cuenta regresiva termina el 4/11/2026 23:59 (hora Argentina): variable `END` en `cyber.js`.
+- Si cambiás `cyber.js`, subí el número de `cyber.js?v=1` en `index.html` (Cloudflare lo cachea).
+- Tiene GTM `GTM-NDP2Z9X`.
+
+## Si algo falla
+
+- **No veo el cambio:** Cloudflare cachea. Recargá con Cmd+Shift+R.
+- **"host key fingerprint mismatch":** el secret `SSH_FINGERPRINT` está mal. Se saca con `ssh-keyscan -t ecdsa IP | ssh-keygen -lf -`.
+- **"permission denied":** revisá que la clave siga tildada en xCloud y que `SSH_KEY` tenga la clave privada completa.

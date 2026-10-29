@@ -1,0 +1,50 @@
+name: Deploy paginas
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Permisos mínimos: el workflow solo puede leer el repo
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+        with:
+          persist-credentials: false
+
+      - name: Preparar archivos
+        run: |
+          mkdir dist
+          # Cada carpeta del repo es una página y se sube a la carpeta del mismo nombre en el servidor.
+          for d in */; do
+            d="${d%/}"
+            case "$d" in
+              dist) continue ;;
+              wp-*|cgi-bin|.well-known)
+                echo "::error::La carpeta '$d' pisaría archivos de WordPress o del servidor. Renombrala."
+                exit 1 ;;
+            esac
+            cp -r "$d" dist/
+            echo "Página: $d"
+          done
+
+      - name: Subir al servidor
+        uses: appleboy/scp-action@917f8b81dfc1ccd331fef9e2d61bdc6c8be94634 # v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          fingerprint: ${{ secrets.SSH_FINGERPRINT }}
+          source: "dist/*"
+          target: "/var/www/cursos.desnudandoelmarketing.com/"
+          strip_components: 1

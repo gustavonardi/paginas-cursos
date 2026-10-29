@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="es">
+<head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NDP2Z9X');</script>
+<!-- End Google Tag Manager -->
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1192997017474111');
+fbq('track', 'PageView');
+</script>
+<!-- End Meta Pixel Code -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Menú | Desnudando el marketing</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,600;1,700&display=swap">
+<style>
+  :root{
+    --bg:#14161e;
+    --bg-2:#1d2129;
+    --surface:#373f51;
+    --surface-alt:#454e64;
+    --celeste:#359de1;
+    --celeste-dim:#2c7fb3;
+    --amarillo:#fed766;
+    --amarillo-dim:#e2bd57;
+    --text:#edeff5;
+    --text-dim:#aab0c2;
+    --border:rgba(237,239,245,0.09);
+    --font-display:"Montserrat", ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --font-body:"Montserrat", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--font-body);
+  }
+  a{color:inherit;text-decoration:none;}
+  img{display:block;}
+
+  .stage{
+    min-height:100vh;
+    width:100%;
+    display:flex;
+    justify-content:center;
+    background:
+      radial-gradient(560px 320px at 50% -80px, rgba(53,157,225,0.28), transparent 70%),
+      radial-gradient(420px 260px at 85% 8%, rgba(254,215,102,0.14), transparent 70%),
+      var(--bg);
+  }
+
+  .page{
+    width:100%;
+    max-width:480px;
+    padding:32px 22px 64px;
+    display:flex;
+    flex-direction:column;
+    gap:52px;
+  }
+
+  @media (min-width:640px){
+    .stage{ padding:40px 20px; align-items:flex-start; }
+    .page{
+      background:var(--bg-2);
+      border:1px solid var(--border);
+      border-radius:30px;
+      box-shadow:0 50px 100px -30px rgba(0,0,0,0.65);
+      padding:32px 30px 64px;
+    }
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    gap:18px;
+  }
+
+  .logo{
+    width:180px;
+    height:auto;
+  }
+
+  .hero h1{
+    font-family:var(--font-display);
+    font-weight:800;
+    font-size:1.9rem;
+    line-height:1.18;
+    margin:0;
+    text-wrap:balance;
+  }
+
+  /* ---------- section scaffolding ---------- */
+  .block{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+
+  .eyebrow{
+    margin:0 0 4px;
+    font-family:var(--font-body);
+    font-weight:800;
+    font-size:0.74rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    padding-bottom:8px;
+    border-bottom:1px solid var(--border);
+  }
+  .eyebrow.celeste{ color:var(--celeste); }
+  .eyebrow.amarillo{ color:var(--amarillo); }
+
+  /* ---------- pill buttons ---------- */
+  .pill{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:999px;
+    padding:15px 20px;
+    transition:transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+  }
+  .pill:hover{ transform:translateY(-2px); border-color:var(--celeste); background:var(--surface-alt); }
+  .pill:focus-visible{ outline:2px solid var(--amarillo); outline-offset:2px; }
+
+  .pill.whatsapp{ border-color:#25d366; background:rgba(37,211,102,0.1); }
+  .pill.whatsapp:hover{ border-color:#25d366; background:rgba(37,211,102,0.18); }
+  .pill.whatsapp .arrow{ color:#25d366; }
+
+  .pill .chip{
+    flex:none;
+    background:var(--amarillo);
+    color:var(--surface);
+    font-weight:800;
+    font-size:0.68rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    padding:4px 10px;
+    border-radius:999px;
+  }
+  .pill .chip.celeste-chip{ background:var(--celeste); color:var(--bg-2); }
+
+  .pill-text{
+    flex:1;
+    font-size:0.92rem;
+    font-weight:600;
+    line-height:1.35;
+  }
+
+  .pill .arrow{
+    flex:none;
+    color:var(--text-dim);
+    font-size:1.1rem;
+  }
+
+  /* ---------- course cards ---------- */
+  .courses{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+
+  .course{
+    position:relative;
+    display:flex;
+    flex-direction:row;
+    align-items:stretch;
+    background:var(--surface-alt);
+    border:1px solid var(--border);
+    border-radius:14px;
+    overflow:hidden;
+    transition:transform 0.15s ease, border-color 0.15s ease;
+  }
+  .course:hover{ transform:translateY(-2px); }
+  .course:focus-visible{ outline:2px solid var(--amarillo); outline-offset:2px; }
+
+  .course-media{
+    position:relative;
+    width:100px;
+    flex:none;
+    aspect-ratio:1/1;
+    background:var(--surface-alt);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:14px;
+  }
+  .course-media img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    display:block;
+  }
+
+  .course-body{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:flex-start;
+    gap:8px;
+    padding:10px 16px;
+  }
+
+  .course-title{
+    margin:0;
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:0.92rem;
+    line-height:1.25;
+  }
+
+  .course-link{
+    font-size:0.85rem;
+    font-weight:700;
+    color:var(--text);
+    background:var(--celeste);
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:5px 18px;
+    border-radius:5px;
+    transition:transform 0.15s ease;
+  }
+  .course:hover .course-link{ transform:translateY(-1px); }
+
+  /* ---------- footer ---------- */
+  .sign-off{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:14px;
+    text-align:center;
+    padding-top:8px;
+  }
+
+  .sign-off p{
+    margin:0;
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:1.3rem;
+    color:var(--amarillo);
+  }
+
+  .ig{
+    font-size:0.85rem;
+    font-weight:700;
+    color:var(--text-dim);
+    border:1px solid var(--border);
+    border-radius:999px;
+    padding:9px 18px;
+    transition:border-color 0.15s ease, color 0.15s ease;
+  }
+  .ig:hover{ border-color:var(--celeste); color:var(--text); }
+  .ig:focus-visible{ outline:2px solid var(--amarillo); outline-offset:2px; }
+
+  @media (prefers-reduced-motion: reduce){
+    .pill, .course, .ig{ transition:none; }
+  }
+</style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NDP2Z9X"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<!-- Meta Pixel Code (noscript) -->
+<noscript><img height="1" width="1" style="display:none" alt=""
+src="https://www.facebook.com/tr?id=1192997017474111&ev=PageView&noscript=1"></noscript>
+<!-- End Meta Pixel Code (noscript) -->
+
+<div class="stage">
+  <div class="page">
+
+    <header class="hero">
+      <img class="logo" src="logo.svg" alt="Des(a)nudando el marketing">
+      <h1>¡Bienvenido a la mejor comunidad de marketing!</h1>
+    </header>
+
+    <section class="block">
+      <p class="eyebrow amarillo">Club de marketing</p>
+
+      <a class="pill" href="https://desnudandoelmarketing.com/club/" target="_blank" rel="noopener">
+        <span class="chip celeste-chip">Club</span>
+        <span class="pill-text">Unite al club de marketing con clases semanales grabadas</span>
+        <span class="arrow">→</span>
+      </a>
+    </section>
+
+    <section class="block">
+      <p class="eyebrow celeste">Cursos</p>
+
+      <div class="courses">
+        <a class="course" href="https://cursos.desnudandoelmarketing.com/product/curso-de-community-manager/" target="_blank" rel="noopener">
+          <div class="course-media"><img src="icons/community-manager.svg" alt="Curso de Community Manager" loading="lazy"></div>
+          <div class="course-body">
+            <h3 class="course-title">Curso de Community Manager</h3>
+            <span class="course-link">Ver info <span>→</span></span>
+          </div>
+        </a>
+
+        <a class="course" href="https://cursos.desnudandoelmarketing.com/product/publicidad-fb-ig/" target="_blank" rel="noopener">
+          <div class="course-media"><img src="icons/publicidad-redes.svg" alt="Curso de Publicidad en Redes Sociales" loading="lazy"></div>
+          <div class="course-body">
+            <h3 class="course-title">Curso de Publicidad en Redes Sociales</h3>
+            <span class="course-link">Ver info <span>→</span></span>
+          </div>
+        </a>
+
+        <a class="course" href="https://cursos.desnudandoelmarketing.com/product/curso-principios-de-marketing-digital/" target="_blank" rel="noopener">
+          <div class="course-media"><img src="icons/principios-marketing.svg" alt="Curso de Principios de Marketing Digital" loading="lazy"></div>
+          <div class="course-body">
+            <h3 class="course-title">Curso de Principios de Marketing Digital</h3>
+            <span class="course-link">Ver info <span>→</span></span>
+          </div>
+        </a>
+
+        <a class="course" href="https://cursos.desnudandoelmarketing.com/product/curso-universitario-estrategias-mkt-digital/" target="_blank" rel="noopener">
+          <div class="course-media">
+            <img src="icons/estrategias-avanzadas.svg" alt="Estrategias Avanzadas de Marketing Digital" loading="lazy">
+          </div>
+          <div class="course-body">
+            <h3 class="course-title">Estrategias Avanzadas de Marketing Digital</h3>
+            <span class="course-link">Ver info <span>→</span></span>
+          </div>
+        </a>
+
+        <a class="course" href="https://cursos.desnudandoelmarketing.com/product/curso-email-marketing/" target="_blank" rel="noopener">
+          <div class="course-media"><img src="icons/email-marketing.svg" alt="Curso de Email Marketing" loading="lazy"></div>
+          <div class="course-body">
+            <h3 class="course-title">Curso de Email Marketing</h3>
+            <span class="course-link">Ver info <span>→</span></span>
+          </div>
+        </a>
+
+        <a class="course" href="https://cursos.desnudandoelmarketing.com/product/curso-wordpress/" target="_blank" rel="noopener">
+          <div class="course-media"><img src="icons/wordpress.svg" alt="Curso de Diseño Web con WordPress" loading="lazy"></div>
+          <div class="course-body">
+            <h3 class="course-title">Curso de Diseño Web con WordPress</h3>
+            <span class="course-link">Ver info <span>→</span></span>
+          </div>
+        </a>
+
+        <a class="course" href="https://cursos.desnudandoelmarketing.com/product/curso-google-analytics-gtm-looker-studio/" target="_blank" rel="noopener">
+          <div class="course-media"><img src="icons/google-analytics.svg" alt="Curso de Google Analytics 4, Tag Manager y Looker Studio" loading="lazy"></div>
+          <div class="course-body">
+            <h3 class="course-title">Google Analytics 4, Tag Manager y Looker Studio</h3>
+            <span class="course-link">Ver info <span>→</span></span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="block">
+      <p class="eyebrow amarillo">Lista exclusiva</p>
+
+      <a class="pill" href="https://cursos.desnudandoelmarketing.com/lista-de-espera-curso-ia/" target="_blank" rel="noopener">
+        <span class="chip celeste-chip">Nuevo</span>
+        <span class="pill-text">Lista exclusiva: Nuevo curso "Marketing con IA"</span>
+        <span class="arrow">→</span>
+      </a>
+    </section>
+
+    <section class="block">
+      <p class="eyebrow celeste">Recursos gratis</p>
+
+      <a class="pill" href="https://cursos.desnudandoelmarketing.com/masterclass-producto-rrss/" target="_blank" rel="noopener">
+        <span class="chip">Gratis</span>
+        <span class="pill-text">Clase gratis: ¿cómo mostrar tu producto en redes sociales sin sacrificar la interacción?</span>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="pill" href="https://cursos.desnudandoelmarketing.com/masterclass-contenido/" target="_blank" rel="noopener">
+        <span class="chip">Gratis</span>
+        <span class="pill-text">Clase gratis: MasterClass de ideas de contenido para redes sociales</span>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="pill" href="https://cursos.desnudandoelmarketing.com/checklist-ecommerce/" target="_blank" rel="noopener">
+        <span class="chip">Gratis</span>
+        <span class="pill-text">Checklist para mejorar tu tienda online y aumentar tus ventas</span>
+        <span class="arrow">→</span>
+      </a>
+    </section>
+
+    <section class="block">
+      <p class="eyebrow amarillo">Comunidad y recursos</p>
+
+      <a class="pill" href="https://desnudandoelmarketing.com/newsletter?utm_source=menu%20cursos&utm_medium=web%20cursos" target="_blank" rel="noopener">
+        <span class="pill-text">Newsletter de marketing mensual</span>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="pill whatsapp" href="https://whatsapp.com/channel/0029VamNCp1KAwEc3bm5m905" target="_blank" rel="noopener">
+        <span class="pill-text">Canal de noticias de marketing en WhatsApp</span>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="pill" href="https://discord.gg/jywy6KGWZX" target="_blank" rel="noopener">
+        <span class="pill-text">Grupo de Discord para hacer networking</span>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="pill" href="https://desnudandoelmarketing.com/" target="_blank" rel="noopener">
+        <span class="pill-text">Blog con artículos de marketing</span>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="pill" href="https://www.tiendanube.com/partners/desnudando-el-marketing?utm_source=instagram&utm_medium=affiliates&utm_campaign=reel&utm_term=desnudando-el-marketing&utm_content=mktparatutienda" target="_blank" rel="noopener">
+        <span class="chip celeste-chip">25% off</span>
+        <span class="pill-text">Creá tu Tienda Online gratis con Tiendanube</span>
+        <span class="arrow">→</span>
+      </a>
+    </section>
+
+    <footer class="sign-off">
+      <p>¡A seguir marketeando!</p>
+      <a class="ig" href="https://instagram.com/desnudandoelmarketing" target="_blank" rel="noopener">@desnudandoelmarketing</a>
+    </footer>
+
+  </div>
+</div>
+
+</body>
+</html>
