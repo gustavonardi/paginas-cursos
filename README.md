@@ -13,6 +13,28 @@ Todas las páginas que se publican **sin pasar por WordPress**, en un solo repo.
 - Hub Laboral (`gustavonardi/hub-laboral`): usa shortcode por la restricción de usuarios.
 - Lista de espera curso IA (`gustavonardi/lista-de-espera-curso-ia`): se pega en un módulo de Divi y usa el formulario de Brevo.
 
+## Avisos de eventos (`avisos/`)
+
+Bloques que se muestran dentro de páginas de WordPress (Cyber, Black Friday, etc.). En Divi se pega **una sola vez** un código corto que trae el aviso desde acá; para cada evento nuevo se cambia el archivo en GitHub y no se toca WordPress.
+
+| Archivo | Qué es | Contenedor en Divi | ID para GTM |
+|---|---|---|---|
+| `avisos/on-page.js` | Bloque dentro de la página (home de cursos, abajo del primer bloque) | `dem-aviso-on-page` | `aviso-on-page` |
+
+- Arriba de cada archivo está el bloque `AVISO` con fechas (`desde` / `hasta`, hora Argentina), textos y link. Es lo único que hay que cambiar.
+- Fuera de las fechas no se muestra nada. Para verlo antes: agregar `?aviso=1` a la URL de la página.
+- Las fechas las chequea el navegador de cada visitante; no depende de un cron ni de la hora del servidor.
+- Cambios visibles en 10 minutos como mucho (Cloudflare guarda los .js un año, por eso el código de Divi pide versión nueva cada 10 min).
+
+Código para el módulo Código de Divi (on page):
+
+```html
+<div id="dem-aviso-on-page"></div>
+<script>
+(function(){var s=document.createElement('script');s.src='https://cursos.desnudandoelmarketing.com/avisos/on-page.js?v='+Math.floor(Date.now()/6e5);s.defer=true;document.head.appendChild(s);})();
+</script>
+```
+
 ## Cómo funciona
 
 ```
