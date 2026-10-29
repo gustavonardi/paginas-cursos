@@ -247,6 +247,90 @@ fbq('track', 'PageView');
   }
   .course:hover .course-link{ transform:translateY(-1px); }
 
+  /* ---------- cartel cyber (solo se ve del 2 al 4/11, ver script al final) ---------- */
+  .cyber{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    padding:22px 20px 20px;
+    border-radius:20px;
+    background:linear-gradient(160deg, #2a1a14 0%, var(--surface) 70%);
+    border:1px solid rgba(245,130,32,0.55);
+    box-shadow:0 24px 50px -24px rgba(232,75,26,0.55);
+    overflow:hidden;
+    transition:transform 0.15s ease, border-color 0.15s ease;
+  }
+  .cyber[hidden]{ display:none; }
+  .cyber:hover{ transform:translateY(-2px); border-color:#f58220; }
+  .cyber:focus-visible{ outline:2px solid var(--amarillo); outline-offset:2px; }
+
+  .cyber-top{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:8px 10px;
+  }
+  .cyber-tag{
+    background:linear-gradient(90deg, #f58220 0%, #e84b1a 100%);
+    color:#fff;
+    font-weight:800;
+    font-size:0.7rem;
+    letter-spacing:0.14em;
+    padding:5px 10px;
+    border-radius:4px;
+  }
+  .cyber-fecha{
+    font-size:0.8rem;
+    font-weight:700;
+    color:var(--text-dim);
+  }
+
+  .cyber-oferta{
+    margin:0;
+    font-family:var(--font-display);
+    font-weight:800;
+    font-size:1.55rem;
+    line-height:1.15;
+    text-wrap:balance;
+  }
+  .cyber-oferta span{ color:var(--amarillo); }
+
+  .cyber-sub{
+    margin:-6px 0 0;
+    font-size:0.92rem;
+    font-weight:600;
+    color:var(--text-dim);
+  }
+  .cyber-sub strong{ color:var(--text); }
+
+  .cyber-bonus{
+    display:flex;
+    gap:10px;
+    align-items:flex-start;
+    background:rgba(254,215,102,0.1);
+    border:1px solid rgba(254,215,102,0.3);
+    border-radius:12px;
+    padding:12px 14px;
+    font-size:0.84rem;
+    line-height:1.45;
+  }
+  .cyber-bonus .ico{ flex:none; font-size:1.1rem; line-height:1.3; }
+  .cyber-bonus strong{ color:var(--amarillo); }
+
+  .cyber-btn{
+    align-self:stretch;
+    text-align:center;
+    background:var(--amarillo);
+    color:var(--bg);
+    font-weight:800;
+    font-size:0.92rem;
+    padding:13px 18px;
+    border-radius:999px;
+    transition:background 0.15s ease;
+  }
+  .cyber:hover .cyber-btn{ background:var(--amarillo-dim); }
+
   /* ---------- footer ---------- */
   .sign-off{
     display:flex;
@@ -278,7 +362,7 @@ fbq('track', 'PageView');
   .ig:focus-visible{ outline:2px solid var(--amarillo); outline-offset:2px; }
 
   @media (prefers-reduced-motion: reduce){
-    .pill, .course, .ig{ transition:none; }
+    .pill, .course, .ig, .cyber, .cyber-btn{ transition:none; }
   }
 </style>
 </head>
@@ -299,6 +383,20 @@ src="https://www.facebook.com/tr?id=1192997017474111&ev=PageView&noscript=1"></n
       <img class="logo" src="logo.svg" alt="Des(a)nudando el marketing">
       <h1>¡Bienvenido a la mejor comunidad de marketing!</h1>
     </header>
+
+    <a class="cyber" id="cartel-cyber" href="https://cursos.desnudandoelmarketing.com/cybermarketing/" target="_blank" rel="noopener" hidden>
+      <div class="cyber-top">
+        <span class="cyber-tag">CYBER MARKETING</span>
+        <span class="cyber-fecha">2 al 4 de noviembre</span>
+      </div>
+      <p class="cyber-oferta"><span>20% OFF</span><br>+ 3 cuotas sin interés</p>
+      <p class="cyber-sub">En <strong>TODOS</strong> los combos y cursos</p>
+      <div class="cyber-bonus">
+        <span class="ico" aria-hidden="true">🎁</span>
+        <span><strong>NUEVO:</strong> con tu compra accedés al <strong>Hub Laboral</strong>. Tips de CV, entrevistas y LinkedIn</span>
+      </div>
+      <span class="cyber-btn">Ver cursos con 20% OFF →</span>
+    </a>
 
     <section class="block">
       <p class="eyebrow amarillo">Club de marketing</p>
@@ -443,6 +541,19 @@ src="https://www.facebook.com/tr?id=1192997017474111&ev=PageView&noscript=1"></n
 
   </div>
 </div>
+
+<script>
+  // Cartel del Cyber: se muestra solo del 2/11 00:00 al 4/11 23:59 (hora Argentina).
+  // Para verlo antes, abrir la página con ?cyber=1
+  (function(){
+    var desde = new Date('2026-11-02T00:00:00-03:00');
+    var hasta = new Date('2026-11-05T00:00:00-03:00');
+    var ahora = new Date();
+    if ((ahora >= desde && ahora < hasta) || /[?&]cyber=1\b/.test(location.search)) {
+      document.getElementById('cartel-cyber').hidden = false;
+    }
+  })();
+</script>
 
 </body>
 </html>
