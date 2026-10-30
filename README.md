@@ -20,6 +20,7 @@ Bloques que se muestran dentro de páginas de WordPress (Cyber, Black Friday, et
 | Archivo | Qué es | Contenedor en Divi | ID para GTM |
 |---|---|---|---|
 | `avisos/on-page.js` | Bloque dentro de la página (home de cursos, abajo del primer bloque) | `dem-aviso-on-page` | `aviso-on-page` |
+| `avisos/top-bar.js` | Barra celeste fija arriba de todo: anuncio previo y luego cuenta regresiva (todo el sitio) | No necesita: se agrega sola | `aviso-top-bar` |
 
 - Arriba de cada archivo está el bloque `AVISO` con fechas (`desde` / `hasta`, hora Argentina), textos y link. Es lo único que hay que cambiar.
 - Fuera de las fechas no se muestra nada. Para verlo antes: agregar `?aviso=1` a la URL de la página.
@@ -34,6 +35,16 @@ Código para el módulo Código de Divi (on page):
 (function(){var s=document.createElement('script');s.src='https://cursos.desnudandoelmarketing.com/avisos/on-page.js?v='+Math.floor(Date.now()/6e5);s.defer=true;document.head.appendChild(s);})();
 </script>
 ```
+
+Código de la top bar. Va en **Divi > Opciones del tema > Integración > "Agregar código al <head>"**, para que se vea en todo el sitio (home, cursos y aula). No carga en carrito, checkout, inicio de sesión ni mi cuenta:
+
+```html
+<script>
+(function(){if(/^\/(checkout|carrito|inicio-de-sesion|mi-cuenta)(\/|$)/.test(location.pathname))return;var s=document.createElement('script');s.src='https://cursos.desnudandoelmarketing.com/avisos/top-bar.js?v='+Math.floor(Date.now()/6e5);s.defer=true;document.head.appendChild(s);})();
+</script>
+```
+
+La top bar tiene dos etapas: anuncio ("empieza en X días", sin link, para que nadie compre antes a precio normal) y oferta (cuenta regresiva y toda la barra clickeable). Para probarla: `?aviso=1` muestra la etapa de hoy y `?aviso=oferta` la de oferta.
 
 ## Cómo funciona
 
@@ -58,7 +69,7 @@ Antes de elegir el nombre:
 
 ## Qué se configuró (una sola vez)
 
-1. **xCloud, Site SSH/sFTP Access:** clave pública "github cyber-marketing" tildada (usuario `u15_cursosv2_4n`, solo autenticación por clave).
+1. **xCloud, Site SSH/sFTP Access:** clave pública "github cyber-marketing" tildada (solo autenticación por clave).
 2. **GitHub, Settings > Secrets and variables > Actions:**
    - `SSH_KEY`: clave privada (solo existe ahí).
    - `SSH_HOST`: IP del servidor.
