@@ -44,7 +44,7 @@ Código de la top bar. Va en **Divi > Opciones del tema > Integración > "Agrega
 </script>
 ```
 
-La top bar tiene dos etapas: anuncio ("empieza en X días", sin link, para que nadie compre antes a precio normal) y oferta (cuenta regresiva y toda la barra clickeable). Para probarla: `?aviso=1` muestra la etapa de hoy y `?aviso=oferta` la de oferta.
+La top bar tiene dos etapas: anuncio ("empieza en X días", con link al formulario de la página del Cyber, que hasta ese día no tiene botones de compra) y oferta (cuenta regresiva y toda la barra clickeable). Para probarla: `?aviso=1` muestra la etapa de hoy y `?aviso=oferta` la de oferta.
 
 ## Cómo funciona
 

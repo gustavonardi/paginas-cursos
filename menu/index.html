@@ -262,6 +262,7 @@ fbq('track', 'PageView');
     transition:transform 0.15s ease, border-color 0.15s ease;
   }
   .cyber[hidden]{ display:none; }
+  .pill[hidden]{ display:none; }
   .cyber:hover{ transform:translateY(-2px); border-color:#f58220; }
   .cyber:focus-visible{ outline:2px solid var(--amarillo); outline-offset:2px; }
 
@@ -507,6 +508,11 @@ src="https://www.facebook.com/tr?id=1192997017474111&ev=PageView&noscript=1"></n
     <section class="block">
       <p class="eyebrow amarillo">Comunidad y recursos</p>
 
+      <a class="pill" id="pill-cyber-previo" href="https://cursos.desnudandoelmarketing.com/cybermarketing/#avisame" target="_blank" rel="noopener" hidden>
+        <span class="pill-text">Cyber Marketing: el lunes arrancan los descuentos</span>
+        <span class="arrow">→</span>
+      </a>
+
       <a class="pill" href="https://desnudandoelmarketing.com/newsletter?utm_source=menu%20cursos&utm_medium=web%20cursos" target="_blank" rel="noopener">
         <span class="pill-text">Newsletter de marketing mensual</span>
         <span class="arrow">→</span>
@@ -549,6 +555,8 @@ src="https://www.facebook.com/tr?id=1192997017474111&ev=PageView&noscript=1"></n
     var desde = new Date('2026-11-02T00:00:00-03:00');
     var hasta = new Date('2026-11-05T00:00:00-03:00');
     var ahora = new Date();
+    // Antes de que empiece, en su lugar va el acceso al formulario de aviso.
+    if (ahora < desde) document.getElementById('pill-cyber-previo').hidden = false;
     if ((ahora >= desde && ahora < hasta) || /[?&]cyber=1\b/.test(location.search)) {
       document.getElementById('cartel-cyber').hidden = false;
     }

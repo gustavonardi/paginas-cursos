@@ -1,6 +1,6 @@
 /*
   Aviso "top bar": barra celeste fija arriba de todo, en dos etapas. Se pega una sola vez en Divi (Opciones del tema > Integración).
-  - Anuncio: dice en cuántos días empieza la oferta. No lleva a ningún lado, para que nadie compre antes a precio normal.
+  - Anuncio: dice en cuántos días empieza la oferta y lleva al formulario de la página del Cyber, que hasta ese día no tiene botones de compra.
   - Oferta: cuenta regresiva y toda la barra clickeable.
   Para el próximo evento: cambiar solo el bloque AVISO de abajo y hacer commit.
   Fuera de las fechas no se muestra nada. Para verlo antes: agregar ?aviso=1 a la URL (etapa de hoy) o ?aviso=oferta (etapa de oferta).
@@ -26,7 +26,9 @@
     anuncioNombre: 'Cyber Marketing',
     anuncioDetalle: 'en todo',
     anuncioCierre: 'empieza',
-    anuncioFecha: 'Lunes 2/11'
+    anuncioFecha: 'Lunes 2/11',
+    anuncioBoton: 'Avisame',
+    anuncioLink: 'https://cursos.desnudandoelmarketing.com/cybermarketing/#avisame'
   };
 
   var ahora = Date.now();
@@ -95,7 +97,7 @@
           '<span class="dem-cierre"></span>' +
           '<span class="dem-t"></span>' +
           '<span class="dem-fecha">' + AVISO.anuncioFecha + '</span>' +
-          '<span class="dem-btn">' + AVISO.boton + '</span>' +
+          '<span class="dem-btn"></span>' +
         '</span>' +
       '</a>' +
       '<button type="button" aria-label="Cerrar aviso">×</button>';
@@ -162,14 +164,15 @@
           nombre.textContent = AVISO.nombres[i].nombre;
           detalle.textContent = AVISO.detalle;
           cierre.textContent = AVISO.cierre;
+          boton.textContent = AVISO.boton;
         } else {
-          enlace.removeAttribute('href');
+          enlace.href = AVISO.anuncioLink;
           nombre.textContent = AVISO.anuncioNombre;
           detalle.textContent = AVISO.anuncioDetalle;
           cierre.textContent = AVISO.anuncioCierre;
+          boton.textContent = AVISO.anuncioBoton;
         }
         fecha.style.display = enOferta ? 'none' : '';
-        boton.style.display = enOferta ? '' : 'none';
       }
       if (enOferta) {
         reloj.textContent =
