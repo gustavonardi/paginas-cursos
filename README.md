@@ -97,12 +97,19 @@ Antes de elegir el nombre:
 
 ### menu (Link en bio)
 - Tiene GTM `GTM-NDP2Z9X` y el píxel de Meta en el HTML.
+- Carga la misma top bar de la home (`avisos/top-bar.js`): se cambia desde ese archivo y se prueba con `?aviso=1` o `?aviso=oferta`.
 - Para medir clics usá activadores "Clic - Solo enlaces" (los botones tienen `<span>` adentro).
 
 ### cybermarketing
-- Página activa solo durante el Cyber (2 al 4 de noviembre). El resto del año queda oculta.
+- Tiene **dos modos**, que decide el navegador según la fecha (no depende del caché de Cloudflare):
+  - **Previo** (antes del lunes 2/11 00:00 hora Argentina): contador "La oferta empieza en", hero "Desde el lunes...", botón "¡Avisame cuando empiece!", formulario de Brevo (`#avisame`) arriba de los combos, precios con la etiqueta "Precio desde el lunes" y los botones de compra cambiados por "Avisame el lunes" (llevan a `#avisame`).
+  - **Oferta** (desde el 2/11 00:00): contador "La oferta termina en" y botones al checkout. Si alguien tiene la página abierta a las 00:00, se recarga sola y pasa a oferta.
+- Lo decide el script del `<head>` de `index.html` (fecha de inicio ahí y en `START` de `cyber.js`: tienen que coincidir). Clases: `solo-previo` / `solo-oferta`.
+- Para verla en cada modo: `?modo=previo` o `?modo=oferta`.
+- El formulario de Brevo solo se carga en modo previo. La lista de destino se configura en Brevo, no en el HTML.
+- Página activa solo durante el Cyber y la previa. El resto del año queda oculta.
 - **Precios fijos** escritos en `index.html` (precio de lista, precio Cyber al 20% y 3 cuotas). No consulta a WooCommerce, así no le suma carga a WordPress durante el pico de ventas. Si cambia un precio, hay que cambiarlo a mano en el HTML.
-- Los botones llevan directo al checkout (`/checkout/?add-to-cart=ID`). El 20% se activa en WooCommerce el domingo previo a las 23:59.
+- En modo oferta los botones llevan directo al checkout (`/checkout/?add-to-cart=ID`). El 20% se activa en WooCommerce el domingo previo a las 23:59.
 - La cuenta regresiva termina el 4/11/2026 23:59 (hora Argentina): variable `END` en `cyber.js`.
 - Si cambiás `cyber.js`, subí el número de `cyber.js?v=2` en `index.html` (Cloudflare lo cachea).
 - Tiene GTM `GTM-NDP2Z9X` y el píxel de Meta `1192997017474111` (PageView). Las compras las mide PixelYourSite en el checkout de WordPress.
