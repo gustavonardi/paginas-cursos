@@ -64,7 +64,8 @@
     '@media (max-width:640px){' +
       '#dem-top-bar a{gap:5px 10px;min-height:0;padding:7px 36px 7px 10px}' +
       '#dem-top-bar .dem-l1{flex-basis:100%;justify-content:center;gap:6px;letter-spacing:.03em;font-size:11px}' +
-      '#dem-top-bar .dem-l1 b{order:-1;padding:2px 6px}' +
+      '#dem-top-bar .dem-l1 b{padding:2px 6px}' +
+      '#dem-top-bar .dem-fecha{display:none}' +
       '#dem-top-bar .dem-l2{gap:10px;letter-spacing:.03em;font-size:11px}' +
       '#dem-top-bar .dem-sep-fin{display:none}' +
       '#dem-top-bar .dem-t{font-size:14px}' +
@@ -85,7 +86,7 @@
     estilo.textContent = css;
     document.head.appendChild(estilo);
 
-    // En celular, el CSS pone la oferta primero y saca el separador del final
+    // En celular, el CSS saca la fecha y el separador del final
     var barra = document.createElement('div');
     barra.id = 'dem-top-bar';
     barra.innerHTML =
