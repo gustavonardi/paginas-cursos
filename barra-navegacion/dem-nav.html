@@ -68,9 +68,10 @@
 html.dem-nav-lock{overflow:hidden}
 @keyframes dem-nav-in{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
 
-/* Barra fina superior: con sesión = Ver mis cursos / Mi cuenta / Cerrar sesión. Sin sesión = Ingresar (solo desktop) */
-.dem-nav-session{display:none;background:var(--dem-nav-bg-deep);border-bottom:1px solid var(--dem-nav-line)}
-body.logged-in .dem-nav-session{display:block}
+/* Barra fina superior: con sesión = Ver mis cursos / Mi cuenta / Cerrar sesión. Sin sesión = Iniciar sesión */
+.dem-nav-session{background:var(--dem-nav-bg-deep);border-bottom:1px solid var(--dem-nav-line)}
+.dem-nav .dem-nav-session-guest{display:flex;align-items:stretch}
+.dem-nav .dem-nav-session-guest .dem-nav-session-link{font-size:14px;font-weight:700;color:var(--dem-nav-text-strong)}
 .dem-nav .dem-nav-session-user{display:none}
 body.logged-in .dem-nav .dem-nav-session-user{display:flex;flex:1;align-items:stretch;justify-content:space-between;gap:16px}
 body.logged-in .dem-nav .dem-nav-session-guest{display:none}
@@ -110,7 +111,7 @@ body.logged-in .dem-nav .dem-nav-session-guest{display:none}
 .dem-nav-menu::-webkit-scrollbar-track{background:transparent}
 .dem-nav-menu::-webkit-scrollbar-thumb{background:rgba(255,255,255,.22);border-radius:3px}
 .dem-nav-list{display:flex;flex-direction:column}
-.dem-nav-item--cursos{order:1}.dem-nav-item--combos{order:2}.dem-nav-item--club{order:3}.dem-nav-item--hub{order:4}.dem-nav-item--que{order:5}.dem-nav-item--gratis{order:6}.dem-nav-item--quien{order:7}.dem-nav-item--account{order:8}
+.dem-nav-item--cursos{order:1}.dem-nav-item--combos{order:2}.dem-nav-item--club{order:3}.dem-nav-item--hub{order:4}.dem-nav-item--que{order:5}.dem-nav-item--gratis{order:6}.dem-nav-item--quien{order:7}
 /* Hub Laboral: solo alumnos (body.logged-in) */
 .dem-nav .dem-nav-item--hub{display:none}
 body.logged-in .dem-nav .dem-nav-item--hub{display:block}
@@ -142,16 +143,12 @@ body.logged-in .dem-nav .dem-nav-item--hub{display:block}
 .dem-nav .dem-nav-cta:active{transform:scale(.98)}
 .dem-nav .dem-nav-cta[aria-current="page"]{box-shadow:0 0 0 2px var(--dem-nav-bg),0 0 0 4px #FFAE4A}
 .dem-nav-cta svg{width:20px;height:20px}
-/* Mi cuenta: separada del resto */
-.dem-nav .dem-nav-item--account{margin-top:14px;padding-top:8px;border-top:1px solid var(--dem-nav-line-strong)}
-body.logged-in .dem-nav .dem-nav-item--account{display:none}
 
 /* ========== Desktop ========== */
 @media (min-width:1200px){
   .dem-nav-session-inner{height:var(--dem-nav-session-h-desktop);justify-content:flex-end;gap:28px;padding:0 24px}
   .dem-nav .dem-nav-session-mine{font-size:13px}
-  .dem-nav-session{display:block}
-  .dem-nav .dem-nav-session-guest{display:flex;align-items:stretch}
+  .dem-nav .dem-nav-session-guest .dem-nav-session-link{font-size:13px;font-weight:500;color:var(--dem-nav-text-muted)}
   body.logged-in .dem-nav .dem-nav-session-user{flex:none;justify-content:flex-end;gap:28px}
   .dem-nav-session-right{gap:0}
   .dem-nav .dem-nav-session-out{font-size:13px;padding-left:20px;margin-left:20px;border-left:1px solid var(--dem-nav-line-strong);margin-top:9px;margin-bottom:9px}
@@ -162,7 +159,6 @@ body.logged-in .dem-nav .dem-nav-item--account{display:none}
   .dem-nav-menu,.dem-nav.is-open .dem-nav-menu{display:block;position:static;background:none;border:0;max-height:none;overflow:visible;padding:0;box-shadow:none;animation:none}
   .dem-nav-list{flex-direction:row;align-items:center;gap:2px}
   .dem-nav-list > .dem-nav-item{order:0;position:relative}
-  .dem-nav .dem-nav-item--account{display:none}
   .dem-nav .dem-nav-link{width:auto;min-height:44px;padding:0 12px;border-radius:8px;font-size:15px;justify-content:flex-start;gap:4px;white-space:nowrap}
   .dem-nav-chevron{width:16px;height:16px;opacity:.85}
   /* Página actual (desktop): blanco en negrita + subrayado celeste. Hover = fondo suave sin subrayado. */
@@ -207,7 +203,7 @@ body.logged-in .dem-nav .dem-nav-item--account{display:none}
   <!-- Barra fina superior -->
   <div class="dem-nav-session">
     <div class="dem-nav-session-inner">
-      <!-- Sin sesión (solo desktop) -->
+      <!-- Sin sesión -->
       <div class="dem-nav-session-guest">
         <!-- LINK · Ingresar -->
         <a class="dem-nav-session-link" href="https://cursos.desnudandoelmarketing.com/inicio-de-sesion/">Iniciar sesión</a>
@@ -294,10 +290,6 @@ body.logged-in .dem-nav .dem-nav-item--account{display:none}
           </a>
         </li>
 
-        <li class="dem-nav-item dem-nav-item--account">
-          <!-- LINK · Iniciar sesión (mobile, sin sesión) -->
-          <a class="dem-nav-link" href="https://cursos.desnudandoelmarketing.com/inicio-de-sesion/">Iniciar sesión</a>
-        </li>
 
       </ul>
     </div>
