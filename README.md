@@ -8,6 +8,7 @@ Todas las páginas que se publican **sin pasar por WordPress**, en un solo repo.
 |---|---|
 | `menu/` | Link en bio: https://cursos.desnudandoelmarketing.com/menu/ |
 | `cybermarketing/` | Cyber Marketing: https://cursos.desnudandoelmarketing.com/cybermarketing/ |
+| `barra-navegacion/` | Barra de navegación del sitio. No es una página suelta: WordPress la muestra con el shortcode `[dem_nav]` en el Header de Divi. Ver [su README](barra-navegacion/README.md). |
 
 **No van acá** las páginas que necesitan WordPress:
 - Hub Laboral (`gustavonardi/hub-laboral`): usa shortcode por la restricción de usuarios.
