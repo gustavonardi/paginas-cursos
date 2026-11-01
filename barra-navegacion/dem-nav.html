@@ -68,10 +68,10 @@
 html.dem-nav-lock{overflow:hidden}
 @keyframes dem-nav-in{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
 
-/* Barra fina superior: con sesión = Ver mis cursos / Mi cuenta / Cerrar sesión. Sin sesión = Iniciar sesión */
-.dem-nav-session{background:var(--dem-nav-bg-deep);border-bottom:1px solid var(--dem-nav-line)}
+/* Barra fina superior: con sesión = Ver mis cursos / Mi cuenta / Cerrar sesión. Sin sesión = Iniciar sesión (solo desktop) */
+.dem-nav-session{display:none;background:var(--dem-nav-bg-deep);border-bottom:1px solid var(--dem-nav-line)}
+body.logged-in .dem-nav-session{display:block}
 .dem-nav .dem-nav-session-guest{display:flex;align-items:stretch}
-.dem-nav .dem-nav-session-guest .dem-nav-session-link{font-size:14px;font-weight:700;color:var(--dem-nav-text-strong)}
 .dem-nav .dem-nav-session-user{display:none}
 body.logged-in .dem-nav .dem-nav-session-user{display:flex;flex:1;align-items:stretch;justify-content:space-between;gap:16px}
 body.logged-in .dem-nav .dem-nav-session-guest{display:none}
@@ -91,6 +91,8 @@ body.logged-in .dem-nav .dem-nav-session-guest{display:none}
 .dem-nav .dem-nav-logo svg{height:var(--dem-nav-logo-h);width:auto}
 .dem-nav .dem-nav-icon-btn{position:relative;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:10px;color:var(--dem-nav-text-strong);transition:background .12s}
 .dem-nav .dem-nav-icon-btn:hover{background:var(--dem-nav-hover-bg)}
+.dem-nav-account{order:1}
+body.logged-in .dem-nav .dem-nav-account{display:none}
 .dem-nav-cart{order:2}
 .dem-nav-burger{order:3}
 .dem-nav-cart-count{position:absolute;top:3px;right:1px;min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:var(--dem-nav-badge-bg);color:var(--dem-nav-badge-text);font-size:11px;font-weight:800;line-height:18px;text-align:center}
@@ -111,7 +113,7 @@ body.logged-in .dem-nav .dem-nav-session-guest{display:none}
 .dem-nav-menu::-webkit-scrollbar-track{background:transparent}
 .dem-nav-menu::-webkit-scrollbar-thumb{background:rgba(255,255,255,.22);border-radius:3px}
 .dem-nav-list{display:flex;flex-direction:column}
-.dem-nav-item--cursos{order:1}.dem-nav-item--combos{order:2}.dem-nav-item--club{order:3}.dem-nav-item--hub{order:4}.dem-nav-item--que{order:5}.dem-nav-item--gratis{order:6}.dem-nav-item--quien{order:7}
+.dem-nav-item--cursos{order:1}.dem-nav-item--combos{order:2}.dem-nav-item--club{order:3}.dem-nav-item--hub{order:4}.dem-nav-item--que{order:5}.dem-nav-item--gratis{order:6}.dem-nav-item--quien{order:7}.dem-nav-item--account{order:8}
 /* Hub Laboral: solo alumnos (body.logged-in) */
 .dem-nav .dem-nav-item--hub{display:none}
 body.logged-in .dem-nav .dem-nav-item--hub{display:block}
@@ -144,17 +146,24 @@ body.logged-in .dem-nav .dem-nav-item--hub{display:block}
 .dem-nav .dem-nav-cta[aria-current="page"]{box-shadow:0 0 0 2px var(--dem-nav-bg),0 0 0 4px #FFAE4A}
 .dem-nav-cta svg{width:20px;height:20px}
 
+/* Iniciar sesión: separado del resto, solo sin sesión */
+.dem-nav .dem-nav-item--account{margin-top:14px;padding-top:8px;border-top:1px solid var(--dem-nav-line-strong)}
+body.logged-in .dem-nav .dem-nav-item--account{display:none}
+/* Celulares muy angostos: logo más chico para que entren los tres íconos */
+@media (max-width:359px){.dem-nav{--dem-nav-logo-h:32px}}
+
 /* ========== Desktop ========== */
 @media (min-width:1200px){
   .dem-nav-session-inner{height:var(--dem-nav-session-h-desktop);justify-content:flex-end;gap:28px;padding:0 24px}
   .dem-nav .dem-nav-session-mine{font-size:13px}
-  .dem-nav .dem-nav-session-guest .dem-nav-session-link{font-size:13px;font-weight:500;color:var(--dem-nav-text-muted)}
+  .dem-nav-session{display:block}
   body.logged-in .dem-nav .dem-nav-session-user{flex:none;justify-content:flex-end;gap:28px}
   .dem-nav-session-right{gap:0}
   .dem-nav .dem-nav-session-out{font-size:13px;padding-left:20px;margin-left:20px;border-left:1px solid var(--dem-nav-line-strong);margin-top:9px;margin-bottom:9px}
   .dem-nav-bar{height:var(--dem-nav-h-desktop);padding:0 16px 0 24px;gap:8px}
   .dem-nav .dem-nav-logo svg{height:var(--dem-nav-logo-h-desktop)}
-  .dem-nav .dem-nav-burger{display:none}
+  .dem-nav .dem-nav-burger,.dem-nav .dem-nav-account{display:none}
+  .dem-nav .dem-nav-item--account{display:none}
   .dem-nav-cart{order:0}
   .dem-nav-menu,.dem-nav.is-open .dem-nav-menu{display:block;position:static;background:none;border:0;max-height:none;overflow:visible;padding:0;box-shadow:none;animation:none}
   .dem-nav-list{flex-direction:row;align-items:center;gap:2px}
@@ -203,7 +212,7 @@ body.logged-in .dem-nav .dem-nav-item--hub{display:block}
   <!-- Barra fina superior -->
   <div class="dem-nav-session">
     <div class="dem-nav-session-inner">
-      <!-- Sin sesión -->
+      <!-- Sin sesión (solo desktop) -->
       <div class="dem-nav-session-guest">
         <!-- LINK · Ingresar -->
         <a class="dem-nav-session-link" href="https://cursos.desnudandoelmarketing.com/inicio-de-sesion/">Iniciar sesión</a>
@@ -282,6 +291,11 @@ body.logged-in .dem-nav .dem-nav-item--hub{display:block}
           <a class="dem-nav-link" href="https://cursos.desnudandoelmarketing.com/hub-laboral/">Hub Laboral</a>
         </li>
 
+        <li class="dem-nav-item dem-nav-item--account">
+          <!-- LINK · Iniciar sesión (menú mobile, sin sesión) -->
+          <a class="dem-nav-link" href="https://cursos.desnudandoelmarketing.com/inicio-de-sesion/">Iniciar sesión</a>
+        </li>
+
         <li class="dem-nav-item dem-nav-item--combos">
           <!-- LINK · Combos de cursos (botón destacado) -->
           <a class="dem-nav-cta" href="https://cursos.desnudandoelmarketing.com/combos-de-cursos/">
@@ -293,6 +307,11 @@ body.logged-in .dem-nav .dem-nav-item--hub{display:block}
 
       </ul>
     </div>
+
+    <!-- LINK · Iniciar sesión (ícono mobile, sin sesión) -->
+    <a class="dem-nav-icon-btn dem-nav-account" href="https://cursos.desnudandoelmarketing.com/inicio-de-sesion/" aria-label="Iniciar sesión">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </a>
 
     <!-- LINK · Carrito -->
     <a class="dem-nav-icon-btn dem-nav-cart" href="https://cursos.desnudandoelmarketing.com/carrito/" aria-label="Carrito">
