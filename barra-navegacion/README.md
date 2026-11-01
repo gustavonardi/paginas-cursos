@@ -51,7 +51,7 @@ No hace falta tocar WordPress ni Divi.
 
 ## Cómo se comporta
 
-- **Sin sesión:** muestra "Ingresar" (en desktop en la barra fina de arriba, en mobile dentro del menú).
+- **Sin sesión:** muestra "Iniciar sesión" (en desktop en la barra fina de arriba, en mobile dentro del menú).
 - **Con sesión:** usa la clase `logged-in` que WordPress pone en el `<body>`. Muestra "Ver mis cursos", "Mi cuenta", "Cerrar sesión" y "Hub Laboral".
 - **Hasta 1199 px:** menú hamburguesa. Entre 640 y 1199 px abre como panel lateral de 400 px.
 - **Carrito:** el contador se actualiza con la Store API de WooCommerce. Si no responde, se oculta y el carrito sigue andando.
